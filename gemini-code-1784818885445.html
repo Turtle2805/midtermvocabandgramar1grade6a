@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đề Thi Tiếng Anh Tương Tác - Ms Lê Hằng English</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        :root {
+            --primary-bg-1: #8854C0;
+            --primary-bg-2: #FDCB6E;
+            --primary-bg-3: #00C9A7;
+            --primary-bg-4: #FF7675;
+            --correct-color: #00D26A;
+            --wrong-color: #FF4757;
+            --card-bg: rgba(255, 255, 255, 0.96);
+            --text-color: #2D3436;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', 'Quicksand', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(-45deg, #8854C0, #FDCB6E, #00C9A7, #E84393);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            padding: 20px 10px 60px 10px;
+            color: var(--text-color);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.25;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='%23FFFFFF'%3E%3Cpath d='M20,10 L23,17 L30,20 L23,23 L20,30 L17,23 L10,20 L17,17 Z' /%3E%3Ccircle cx='80' cy='30' r='8' /%3E%3Cpath d='M70,80 C70,75 80,70 85,80 C90,70 100,75 100,80 C100,90 85,98 85,98 C85,98 70,90 70,80 Z' /%3E%3Ccircle cx='30' cy='85' r='5' /%3E%3Cpath d='M100,20 L105,25 L100,30 L95,25 Z' /%3E%3C/g%3E%3C/svg%3E");
+            animation: floatPattern 30s linear infinite;
+        }
+
+        @keyframes floatPattern {
+            from { background-position: 0 0; }
+            to { background-position: 1000px 1000px; }
+        }
+
+        .container {
+            max-width: 880px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.92);
+            padding: 12px 20px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            margin-bottom: 15px;
+            border: 3px solid #FFF;
+        }
+
+        .author-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #6C5CE7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .alert-box {
+            background: #FFEAA7;
+            border: 3px dashed #FDCB6E;
+            border-radius: 18px;
+            padding: 14px 18px;
+            margin-bottom: 25px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            animation: pulse 2s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.99); }
+            100% { transform: scale(1.01); }
+        }
+
+        .alert-title {
+            color: #D63031;
+            font-size: 1.15rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 6px;
+        }
+
+        .alert-text {
+            color: #2D3436;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .alert-highlight {
+            color: #E84393;
+            font-weight: 800;
+            text-decoration: underline;
+        }
+
+        .section-card {
+            background: var(--card-bg);
+            border-radius: 25px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+            border: 4px solid #FFF;
+        }
+
+        .section-header {
+            background: #6C5CE7;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 15px;
+            font-size: 1.15rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            display: inline-block;
+            box-shadow: 0 4px 10px rgba(108, 92, 231, 0.3);
+        }
+
+        .question-card {
+            background: #F8F9FA;
+            border: 2px solid #E9ECEF;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .question-num {
+            font-weight: 800;
+            color: #6C5CE7;
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+        }
+
+        .question-text {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #2D3436;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .opt-btn {
+            background: #FFFFFF;
+            border: 2px solid #DFE6E9;
+            border-bottom: 6px solid #B2BEC3;
+            border-radius: 18px;
+            padding: 12px 18px;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #2D3436;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.15s ease;
+            outline: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .opt-btn:hover:not([disabled]) {
+            transform: translateY(-2px);
+            background: #F1F2F6;
+            border-color: #74B9FF;
+        }
+
+        .opt-btn:active:not([disabled]) {
+            transform: translateY(3px);
+            border-bottom-width: 2px;
+        }
+
+        .opt-btn.correct {
+            background: #00D26A !important;
+            border-color: #00B85C !important;
+            border-bottom: 6px solid #00994D !important;
+            color: white !important;
+        }
+
+        .opt-btn.wrong {
+            background: #FF4757 !important;
+            border-color: #E84118 !important;
+            border-bottom: 6px solid #C23616 !important;
+            color: white !important;
+            animation: shake 0.4s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
+
+        .explanation-box {
+            display: none;
+            background: #F0F3FF;
+            border: 2px solid #A29BFE;
+            border-radius: 16px;
+            padding: 16px;
+            margin-top: 15px;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .exp-header {
+            font-weight: 800;
+            color: #6C5CE7;
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .exp-content {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #2D3436;
+        }
+
+        .submit-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .submit-btn {
+            background: #00C9A7;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 900;
+            padding: 15px 40px;
+            border: none;
+            border-bottom: 6px solid #009981;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 8px 20px rgba(0,201,167,0.4);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            background: #00D8B3;
+        }
+
+        .submit-btn:active {
+            transform: translateY(3px);
+            border-bottom-width: 2px;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-card {
+            background: white;
+            border-radius: 30px;
+            max-width: 520px;
+            width: 100%;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border: 5px solid #6C5CE7;
+            animation: popUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes popUp {
+            from { transform: scale(0.7); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-score {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #6C5CE7;
+            margin: 15px 0;
+        }
+
+        .modal-msg {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #2D3436;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .close-btn {
+            background: #FF7675;
+            color: white;
+            border: none;
+            border-bottom: 4px solid #D63031;
+            padding: 10px 25px;
+            font-weight: 800;
+            border-radius: 15px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-pattern"></div>
+
+    <div class="container">
+        <header>
+            <div class="author-title">Giáo viên tạo: Ms Lê Hằng English</div>
+        </header>
+
+        <div class="alert-box">
+            <div class="alert-title">⚠️ LỜI NHẮC CỰC KỲ QUAN TRỌNG ⚠️</div>
+            <div class="alert-text">
+                Chỉ có đọc kỹ giải thích ngay sau mỗi câu, sau đó ghi lại từ vựng/cấu trúc mới vào vở để học thì mới thực sự giỏi lên.<br>
+                Làm cho xong mà không đọc giải thích hay đọc qua loa không ghi chép thì chỉ tốn thời gian vô ích!<br>
+                <span class="alert-highlight">* Kéo tới đâu, làm tới đó! *</span>
+            </div>
+        </div>
+
+        <div id="quiz-body"></div>
+
+        <div class="submit-container">
+            <button class="submit-btn" onclick="calculateResult()">NỘP BÀI THI 🚀</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="resultModal">
+        <div class="modal-card">
+            <h2 style="color: #6C5CE7; font-weight: 900;">🎉 KẾT QUẢ BÀI THI 🎉</h2>
+            <div class="modal-score" id="modalScoreText">0 / 0</div>
+            <div class="modal-msg" id="modalMsgText">Lời nhận xét sẽ hiện ở đây...</div>
+            <button class="close-btn" onclick="closeModal()">Đóng / Xem lại bài</button>
+        </div>
+    </div>
+
+    <script>
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playDing() {
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(659.25, audioCtx.currentTime + 0.15);
+                gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.3);
+            } catch(e){}
+        }
+
+        function playWrongSound() {
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(200, audioCtx.currentTime);
+                osc.frequency.setValueAtTime(150, audioCtx.currentTime + 0.15);
+                gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.4);
+            } catch(e){}
+        }
+
+        const questionsData = [
+            // Exercise 3
+            { 
+                id: 16, 
+                section: "EXERCISE 3: MATCHING (NỐI VẾ CÂU)", 
+                question: "16. Where is the school garden?", 
+                rawOptions: [
+                    {key:"I", text:"I. It is behind the laboratory.", isCorrect:true}, 
+                    {key:"A", text:"A. Once a week.", isCorrect:false}, 
+                    {key:"F", text:"F. I do my homework.", isCorrect:false}, 
+                    {key:"H", text:"H. On Monday and Saturday.", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu hỏi:</b> Vườn trường ở đâu?<br><b>Phân tích từng đáp án:</b><br>- <b>I. It is behind the laboratory.</b> (/ɪt ɪz bɪˈhaɪnd ðə ləˈbɑː.rə.tɔːr.i/): Nó ở phía sau phòng thí nghiệm.<br>- <b>A. Once a week.</b> (/wʌns ə wiːk/): Một lần một tuần (Trả lời cho câu hỏi tần suất How often).<br>- <b>F. I do my homework.</b> (/aɪ duː maɪ ˈhoʊm.wɝːk/): Tôi làm bài tập về nhà (Trả lời cho câu hỏi hành động What do you do).<br>- <b>H. On Monday and Saturday.</b> (/ɑːn ˈmʌn.deɪ.../): Vào thứ Hai và thứ Bảy (Trả lời cho câu hỏi thời gian When).<br><b>👉 Tại sao I ĐÚNG:</b> Câu hỏi bắt đầu bằng 'Where' (Ở đâu) bắt buộc phải trả lời bằng địa điểm/vị trí (behind the laboratory). Các đáp án A, F, H sai vì trả lời sai nét nghĩa từ hỏi." 
+            },
+            { 
+                id: 17, 
+                section: "EXERCISE 3: MATCHING (NỐI VẾ CÂU)", 
+                question: "17. What do you do every afternoon?", 
+                rawOptions: [
+                    {key:"F", text:"F. I do my homework.", isCorrect:true}, 
+                    {key:"A", text:"A. Once a week.", isCorrect:false}, 
+                    {key:"B", text:"B. Yes, they do.", isCorrect:false}, 
+                    {key:"C", text:"C. and I am, too.", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu hỏi:</b> Bạn làm gì vào mỗi buổi chiều?<br><b>Phân tích từng đáp án:</b><br>- <b>F. I do my homework.</b> (/aɪ duː maɪ ˈhoʊm.wɝːk/): Tôi làm bài tập về nhà.<br>- <b>A. Once a week.</b> (/wʌns ə wiːk/): Một lần một tuần (Chỉ số lần/tần suất).<br>- <b>B. Yes, they do.</b> (/jes ðeɪ duː/): Có, họ có làm (Câu trả lời Yes/No cho chủ ngữ 'they').<br>- <b>C. and I am, too.</b> (/ænd aɪ æm tuː/): và tôi cũng vậy (Cấu trúc đồng tình).<br><b>👉 Tại sao F ĐÚNG:</b> Câu hỏi 'What do you do' yêu cầu trả lời một hành động cụ thể. A, B, C sai vì không phải là hành động trả lời cho câu hỏi 'làm gì'." 
+            },
+            { 
+                id: 18, 
+                section: "EXERCISE 3: MATCHING (NỐI VẾ CÂU)", 
+                question: "18. We are playing a game", 
+                rawOptions: [
+                    {key:"C", text:"C. and I am, too.", isCorrect:true}, 
+                    {key:"E", text:"E. or dance well?", isCorrect:false}, 
+                    {key:"G", text:"G. and Tom is helping her.", isCorrect:false}, 
+                    {key:"J", text:"J. but they aren't.", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch vế cho trước:</b> Chúng tôi đang chơi một trò chơi...<br><b>Phân tích từng đáp án:</b><br>- <b>C. and I am, too.</b> (/ænd aɪ æm tuː/): và tôi cũng vậy.<br>- <b>E. or dance well?</b> (/ɔːr dæns wel/): hay nhảy giỏi? (Dùng ghép câu hỏi).<br>- <b>G. and Tom is helping her.</b> (/ænd tɑːm.../): và Tom đang giúp cô ấy (Lệch chủ ngữ 'her').<br>- <b>J. but they aren't.</b> (/bʌt ðeɪ ɑːrnt/): nhưng họ thì không.<br><b>👉 Tại sao C ĐÚNG:</b> Cấu trúc đồng tình khẳng định với động từ To Be: 'and + S + Be, too'. E, G, J sai ngữ cảnh và lệch chủ ngữ/cấu trúc liên kết." 
+            },
+            { 
+                id: 19, 
+                section: "EXERCISE 3: MATCHING (NỐI VẾ CÂU)", 
+                question: "19. Do they watch TV in the evening?", 
+                rawOptions: [
+                    {key:"B", text:"B. Yes, they do.", isCorrect:true}, 
+                    {key:"A", text:"A. Once a week.", isCorrect:false}, 
+                    {key:"D", text:"D. but one of them is broken.", isCorrect:false}, 
+                    {key:"I", text:"I. It is behind the laboratory.", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu hỏi:</b> Họ có xem TV vào buổi tối không?<br><b>Phân tích từng đáp án:</b><br>- <b>B. Yes, they do.</b> (/jes ðeɪ duː/): Có, họ có xem.<br>- <b>A. Once a week.</b> (/wʌns ə wiːk/): Một lần một tuần.<br>- <b>D. but one of them is broken.</b> (/bʌt wʌn.../): nhưng 1 cái bị hỏng (Tả đồ vật).<br>- <b>I. It is behind the laboratory.</b> (/ɪt ɪz.../): Nó ở sau phòng thí nghiệm (Địa điểm).<br><b>👉 Tại sao B ĐÚNG:</b> Câu hỏi Yes/No nghi vấn bắt đầu bằng 'Do they' trả lời chuẩn xác nhất là 'Yes, they do'. A, D, I sai vì không đáp ứng dạng câu hỏi nghi vấn." 
+            },
+            { 
+                id: 20, 
+                section: "EXERCISE 3: MATCHING (NỐI VẾ CÂU)", 
+                question: "20. Can Peter and Mary sing", 
+                rawOptions: [
+                    {key:"E", text:"E. or dance well?", isCorrect:true}, 
+                    {key:"C", text:"C. and I am, too.", isCorrect:false}, 
+                    {key:"F", text:"F. I do my homework.", isCorrect:false}, 
+                    {key:"H", text:"H. On Monday and Saturday.", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch vế cho trước:</b> Peter và Mary có thể hát...<br><b>Phân tích từng đáp án:</b><br>- <b>E. or dance well?</b> (/ɔːr dæns wel/): hay nhảy giỏi không?<br>- <b>C. and I am, too.</b> (/ænd aɪ æm tuː/): và tôi cũng vậy.<br>- <b>F. I do my homework.</b> (/aɪ duː.../): Tôi làm bài tập.<br>- <b>H. On Monday and Saturday.</b> (/ɑːn ˈmʌn.deɪ.../): Vào thứ 2 và thứ 7.<br><b>👉 Tại sao E ĐÚNG:</b> Động từ khuyết thiếu 'Can' kết hợp hai động từ nguyên thể đưa ra lựa chọn: 'sing or dance well?'. C, F, H sai vì không ghép tạo thành câu hỏi lựa chọn hoàn chỉnh." 
+            },
+            { 
+                id: 21, 
+                section: "EXERCISE 3: MATCHING (NỐI VẾ CÂU)", 
+                question: "21. Mary is cleaning the living room", 
+                rawOptions: [
+                    {key:"G", text:"G. and Tom is helping her.", isCorrect:true}, 
+                    {key:"C", text:"C. and I am, too.", isCorrect:false}, 
+                    {key:"D", text:"D. but one of them is broken.", isCorrect:false}, 
+                    {key:"J", text:"J. but they aren't.", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch vế cho trước:</b> Mary đang dọn dẹp phòng khách...<br><b>Phân tích từng đáp án:</b><br>- <b>G. and Tom is helping her.</b> (/ænd tɑːm ɪz ˈhel.pɪŋ hɝː/): và Tom đang giúp cô ấy.<br>- <b>C. and I am, too.</b> (/ænd aɪ æm tuː/): và tôi cũng vậy.<br>- <b>D. but one of them is broken.</b> (/bʌt wʌn.../): nhưng 1 cái bị hỏng.<br>- <b>J. but they aren't.</b> (/bʌt ðeɪ ɑːrnt/): nhưng họ thì không.<br><b>👉 Tại sao G ĐÚNG:</b> Vế trước nhắc tới Mary (nữ) $\rightarrow$ Vế sau ghép hợp logic 'helping her' (giúp cô ấy - her đại diện cho Mary). C, D, J sai về sự hòa hợp đại từ và ngữ cảnh." 
+            },
+            { 
+                id: 22, 
+                section: "EXERCISE 3: MATCHING (NỐI VẾ CÂU)", 
+                question: "22. How often do you play computer games?", 
+                rawOptions: [
+                    {key:"A", text:"A. Once a week.", isCorrect:true}, 
+                    {key:"H", text:"H. On Monday and Saturday.", isCorrect:false}, 
+                    {key:"F", text:"F. I do my homework.", isCorrect:false}, 
+                    {key:"B", text:"B. Yes, they do.", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu hỏi:</b> Bạn có thường chơi game máy tính không?<br><b>Phân tích từng đáp án:</b><br>- <b>A. Once a week.</b> (/wʌns ə wiːk/): Một lần một tuần (Trạng từ chỉ tần suất).<br>- <b>H. On Monday and Saturday.</b> (/ɑːn ˈmʌn.deɪ.../): Vào thứ 2 và thứ 7 (Thời gian cụ thể - Trả lời cho When).<br>- <b>F. I do my homework.</b> (/aɪ duː.../): Tôi làm bài tập (Hành động).<br>- <b>B. Yes, they do.</b> (/jes ðeɪ duː/): Có, họ có (Yes/No).<br><b>👉 Tại sao A ĐÚNG:</b> Từ hỏi 'How often' dùng hỏi tần suất $\rightarrow$ Bắt buộc trả lời bằng cụm chỉ số lần/tần suất 'Once a week'. H, F, B sai trọng tâm từ hỏi." 
+            },
+            { 
+                id: 23, 
+                section: "EXERCISE 3: MATCHING (NỐI VẾ CÂU)", 
+                question: "23. My friend is reading a book", 
+                rawOptions: [
+                    {key:"J", text:"J. but they aren't.", isCorrect:true}, 
+                    {key:"D", text:"D. but one of them is broken.", isCorrect:false}, 
+                    {key:"G", text:"G. and Tom is helping her.", isCorrect:false}, 
+                    {key:"C", text:"C. and I am, too.", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch vế cho trước:</b> Bạn của tôi đang đọc sách...<br><b>Phân tích từng đáp án:</b><br>- <b>J. but they aren't.</b> (/bʌt ðeɪ ɑːrnt/): nhưng họ thì không.<br>- <b>D. but one of them is broken.</b> (/bʌt wʌn.../): nhưng một cái bị hỏng (Tả đồ vật).<br>- <b>G. and Tom is helping her.</b> (/ænd tɑːm.../): và Tom giúp cô ấy.<br>- <b>C. and I am, too.</b> (/ænd aɪ æm tuː/): và tôi cũng vậy.<br><b>👉 Tại sao J ĐÚNG:</b> Diễn tả sự đối lập giữa hai nhóm: 'Bạn tôi đang đọc sách, nhưng họ thì không (đọc)'. D, G, C không đúng ngữ cảnh tương phản logic." 
+            },
+            { 
+                id: 24, 
+                section: "EXERCISE 3: MATCHING (NỐI VẾ CÂU)", 
+                question: "24. When do you have Maths?", 
+                rawOptions: [
+                    {key:"H", text:"H. On Monday and Saturday.", isCorrect:true}, 
+                    {key:"A", text:"A. Once a week.", isCorrect:false}, 
+                    {key:"I", text:"I. It is behind the laboratory.", isCorrect:false}, 
+                    {key:"F", text:"F. I do my homework.", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu hỏi:</b> Khi nào bạn có môn Toán?<br><b>Phân tích từng đáp án:</b><br>- <b>H. On Monday and Saturday.</b> (/ɑːn ˈmʌn.deɪ.../): Vào thứ Hai và thứ Bảy.<br>- <b>A. Once a week.</b> (/wʌns ə wiːk/): Một lần một tuần (Hỏi tần suất).<br>- <b>I. It is behind the laboratory.</b> (/ɪt ɪz.../): Ở đằng sau phòng thí nghiệm (Địa điểm).<br>- <b>F. I do my homework.</b> (/aɪ duː.../): Tôi làm bài tập (Hành động).<br><b>👉 Tại sao H ĐÚNG:</b> Từ hỏi 'When' dùng để hỏi mốc thời gian $\rightarrow$ Trả lời bằng các ngày trong tuần đi với giới từ 'On'. A, I, F sai vì trả lời cho How often, Where, What." 
+            },
+            { 
+                id: 25, 
+                section: "EXERCISE 3: MATCHING (NỐI VẾ CÂU)", 
+                question: "25. I've got two lamps in my bedroom,", 
+                rawOptions: [
+                    {key:"D", text:"D. but one of them is broken.", isCorrect:true}, 
+                    {key:"J", text:"J. but they aren't.", isCorrect:false}, 
+                    {key:"G", text:"G. and Tom is helping her.", isCorrect:false}, 
+                    {key:"I", text:"I. It is behind the laboratory.", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch vế cho trước:</b> Tôi có hai chiếc đèn trong phòng ngủ...<br><b>Phân tích từng đáp án:</b><br>- <b>D. but one of them is broken.</b> (/bʌt wʌn əv ðem.../): nhưng một cái trong số chúng bị hỏng.<br>- <b>J. but they aren't.</b> (/bʌt ðeɪ ɑːrnt/): nhưng họ thì không (Dùng cho người).<br>- <b>G. and Tom is helping her.</b> (/ænd tɑːm.../): và Tom giúp cô ấy.<br>- <b>I. It is behind the laboratory.</b> (/ɪt ɪz.../): Nó ở sau phòng thí nghiệm.<br><b>👉 Tại sao D ĐÚNG:</b> Vế trước có 'two lamps' (2 chiếc đèn) $\rightarrow$ Vế sau nối tiếp bằng 'one of them' (một trong hai chiếc đó bị hỏng). J, G, I không liên quan tới đối tượng hai chiếc đèn." 
+            },
+
+            // Exercise 4
+            { 
+                id: 26, 
+                section: "EXERCISE 4: MULTIPLE CHOICE", 
+                question: "26. I am having a Maths lesson but I forgot my ........... I have some difficulties.", 
+                rawOptions: [
+                    {key:"A", text:"bicycle", isCorrect:false}, 
+                    {key:"B", text:"calculator", isCorrect:true}, 
+                    {key:"C", text:"exercise", isCorrect:false}, 
+                    {key:"D", text:"lunch box", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Tôi đang có tiết học Toán nhưng tôi quên ........... của mình. Tôi gặp một số khó khăn.<br><b>Phân tích 4 đáp án:</b><br>- <b>A. bicycle</b> (n) /ˈbaɪ.sə.kəl/: xe đạp.<br>- <b>B. calculator</b> (n) /ˈkæl.kjə.leɪ.t̬ɚ/: máy tính bỏ túi.<br>- <b>C. exercise</b> (n) /ˈek.sɚ.saɪz/: bài tập.<br>- <b>D. lunch box</b> (n) /ˈlʌntʃ bɑːks/: hộp cơm trưa.<br><b>👉 Tại sao B ĐÚNG:</b> Ngữ cảnh học Toán (Maths lesson) gặp khó khăn tính toán cần có máy tính bỏ túi (calculator). A, C, D không phải đồ dùng hỗ trợ tính toán trong giờ Toán." 
+            },
+            { 
+                id: 27, 
+                section: "EXERCISE 4: MULTIPLE CHOICE", 
+                question: "27. Daisy is very ........... to take the test. She is a very good student.", 
+                rawOptions: [
+                    {key:"A", text:"confident", isCorrect:true}, 
+                    {key:"B", text:"friendly", isCorrect:false}, 
+                    {key:"C", text:"talkative", isCorrect:false}, 
+                    {key:"D", text:"kind", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Daisy rất ........... khi làm bài kiểm tra. Cô ấy là một học sinh rất giỏi.<br><b>Phân tích 4 đáp án:</b><br>- <b>A. confident</b> (adj) /ˈkɑːn.fə.dənt/: tự tin.<br>- <b>B. friendly</b> (adj) /ˈfrend.li/: thân thiện.<br>- <b>C. talkative</b> (adj) /ˈtɑː.kə.t̬ɪv/: hay nói, nói nhiều.<br>- <b>D. kind</b> (adj) /ˈkaɪnd/: tốt bụng.<br><b>👉 Tại sao A ĐÚNG:</b> Học sinh giỏi (good student) khi đi làm bài thi/kiểm tra sẽ thể hiện sự tự tin (confident). B, C, D tả tính cách đối nhân xử thế, không liên quan trực tiếp đến tâm thế làm bài kiểm tra." 
+            },
+            { 
+                id: 28, 
+                section: "EXERCISE 4: MULTIPLE CHOICE", 
+                question: "28. Look! They...........badminton with their friends.", 
+                rawOptions: [
+                    {key:"A", text:"is playing", isCorrect:false}, 
+                    {key:"B", text:"are play", isCorrect:false}, 
+                    {key:"C", text:"are playing", isCorrect:true}, 
+                    {key:"D", text:"play", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Nhìn kìa! Họ ........... cầu lông với bạn bè của họ.<br><b>Phân tích 4 đáp án:</b><br>- <b>A. is playing</b>: Sai ngữ pháp (They không đi với is).<br>- <b>B. are play</b>: Sai ngữ pháp (are không đi với V-nguyên thể play).<br>- <b>C. are playing</b> (v) /ɑːr ˈpleɪ.ɪŋ/: Đang chơi.<br>- <b>D. play</b>: Động từ Hiện tại đơn.<br><b>👉 Tại sao C ĐÚNG:</b> Dấu hiệu 'Look!' (Nhìn kìa!) yêu cầu chia thì Hiện tại tiếp diễn (S + am/is/are + V-ing). Chủ ngữ 'They' đi với 'are playing'. A, B, D sai công thức ngữ pháp." 
+            },
+            { 
+                id: 29, 
+                section: "EXERCISE 4: MULTIPLE CHOICE", 
+                question: "29. ........... your friend like hot drinks?", 
+                rawOptions: [
+                    {key:"A", text:"Does", isCorrect:true}, 
+                    {key:"B", text:"Is", isCorrect:false}, 
+                    {key:"C", text:"Do", isCorrect:false}, 
+                    {key:"D", text:"Will", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Bạn của bạn có thích đồ uống nóng không?<br><b>Phân tích 4 đáp án:</b><br>- <b>A. Does</b>: Trợ động từ số ít.<br>- <b>B. Is</b>: Động từ To Be.<br>- <b>C. Do</b>: Trợ động từ số nhiều.<br>- <b>D. Will</b>: Trợ động từ tương lai.<br><b>👉 Tại sao A ĐÚNG:</b> Câu hỏi động từ thường 'like', chủ ngữ 'your friend' (số ít, 1 người) -> Mượn trợ động từ 'Does'. B sai vì Is không đi với V-inf; C sai chủ ngữ; D sai thì." 
+            },
+            { 
+                id: 30, 
+                section: "EXERCISE 4: MULTIPLE CHOICE", 
+                question: "30. ........... the boxes light or heavy?", 
+                rawOptions: [
+                    {key:"A", text:"Am", isCorrect:false}, 
+                    {key:"B", text:"Are", isCorrect:true}, 
+                    {key:"C", text:"Is", isCorrect:false}, 
+                    {key:"D", text:"Be", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Những chiếc hộp này nhẹ hay nặng?<br><b>Phân tích 4 đáp án:</b><br>- <b>A. Am</b>: To Be đi với I.<br>- <b>B. Are</b> (v) /ɑːr/: To Be đi với số nhiều.<br>- <b>C. Is</b>: To Be đi với số ít.<br>- <b>D. Be</b>: To Be nguyên thể.<br><b>👉 Tại sao B ĐÚNG:</b> Chủ ngữ 'the boxes' (những chiếc hộp) là danh từ số nhiều -> Động từ To Be tương ứng đứng đầu câu là 'Are'. A, C, D sai sự hòa hợp chủ vị." 
+            },
+            { 
+                id: 31, 
+                section: "EXERCISE 4: MULTIPLE CHOICE", 
+                question: "31. My best friend is very ............ He often makes me laugh.", 
+                rawOptions: [
+                    {key:"A", text:"funny", isCorrect:true}, 
+                    {key:"B", text:"nice", isCorrect:false}, 
+                    {key:"C", text:"shy", isCorrect:false}, 
+                    {key:"D", text:"boring", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Bạn thân của tôi rất ............ Cậu ấy thường làm tôi cười.<br><b>Phân tích 4 đáp án:</b><br>- <b>A. funny</b> (adj) /ˈfʌn.i/: hài hước, vui tính.<br>- <b>B. nice</b> (adj) /naɪs/: tốt bụng.<br>- <b>C. shy</b> (adj) /ʃaɪ/: nhút nhát.<br>- <b>D. boring</b> (adj) /ˈbɔː.rɪŋ/: chán ngắt.<br><b>👉 Tại sao A ĐÚNG:</b> Hành động 'makes me laugh' (làm tôi cười) thể hiện nét tính cách hài hước (funny). B, C, D không tạo ra tiếng cười." 
+            },
+            { 
+                id: 32, 
+                section: "EXERCISE 4: MULTIPLE CHOICE", 
+                question: "32. Mr. Nam ........... our class Maths.", 
+                rawOptions: [
+                    {key:"A", text:"teachs", isCorrect:false}, 
+                    {key:"B", text:"teaches", isCorrect:true}, 
+                    {key:"C", text:"does teach", isCorrect:false}, 
+                    {key:"D", text:"don’t teach", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Thầy Nam ........... môn Toán cho lớp chúng tôi.<br><b>Phân tích 4 đáp án:</b><br>- <b>A. teachs</b>: Sai chính tả (Đuôi -ch phải thêm -es).<br>- <b>B. teaches</b> (v) /ˈtiː.tʃɪz/: Dạy học.<br>- <b>C. does teach</b>: Dùng thừa trợ động từ trong câu khẳng định.<br>- <b>D. don’t teach</b>: Sai chủ ngữ (Mr. Nam số ít không đi với don't).<br><b>👉 Tại sao B ĐÚNG:</b> Chủ ngữ số ít 'Mr. Nam' ở hiện tại đơn đi với động từ thêm -es 'teaches'. A, C, D mắc lỗi chính tả và ngữ pháp." 
+            },
+            { 
+                id: 33, 
+                section: "EXERCISE 4: MULTIPLE CHOICE", 
+                question: "33. This is Nga. She is my ........... wife.", 
+                rawOptions: [
+                    {key:"A", text:"brothers", isCorrect:false}, 
+                    {key:"B", text:"brothers’", isCorrect:false}, 
+                    {key:"C", text:"brother’s", isCorrect:true}, 
+                    {key:"D", text:"brother’", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Đây là Nga. Cô ấy là vợ ........... tôi.<br><b>Phân tích 4 đáp án:</b><br>- <b>A. brothers</b>: Danh từ số nhiều.<br>- <b>B. brothers’</b>: Sở hữu cách số nhiều.<br>- <b>C. brother’s</b> / ˈbrʌð.ɚz/: Của anh trai (Sở hữu cách số ít).<br>- <b>D. brother’</b>: Viết sai dạng sở hữu.<br><b>👉 Tại sao C ĐÚNG:</b> Sở hữu cách của danh từ số ít: Danh từ + 's -> 'brother's wife' (vợ của anh trai tôi). A, B, D sai quy tắc sở hữu cách." 
+            },
+            { 
+                id: 34, 
+                section: "EXERCISE 4: MULTIPLE CHOICE", 
+                question: "34. How about........... out for a drink? - Good idea.", 
+                rawOptions: [
+                    {key:"A", text:"going", isCorrect:true}, 
+                    {key:"B", text:"to go", isCorrect:false}, 
+                    {key:"C", text:"go", isCorrect:false}, 
+                    {key:"D", text:"went", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Đi ra ngoài uống nước thì sao? - Ý kiến hay đấy.<br><b>Phân tích 4 đáp án:</b><br>- <b>A. going</b> (v) /ˈɡoʊ.ɪŋ/: Đi (dạng V-ing).<br>- <b>B. to go</b>: Động từ to-V.<br>- <b>C. go</b>: Động từ nguyên thể.<br>- <b>D. went</b>: Động từ quá khứ.<br><b>👉 Tại sao A ĐÚNG:</b> Cấu trúc câu gợi ý: 'How about + V-ing...?' -> Bắt buộc chọn 'going'. B, C, D sai công thức sau How about." 
+            },
+            { 
+                id: 35, 
+                section: "EXERCISE 4: MULTIPLE CHOICE", 
+                question: "35. My grandfather ........... fishing in his free time.", 
+                rawOptions: [
+                    {key:"A", text:"do", isCorrect:false}, 
+                    {key:"B", text:"goes", isCorrect:true}, 
+                    {key:"C", text:"does", isCorrect:false}, 
+                    {key:"D", text:"go", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Ông tôi ........... đi câu cá vào thời gian rảnh.<br><b>Phân tích 4 đáp án:</b><br>- <b>A. do</b>: Động từ nguyên thể.<br>- <b>B. goes</b> (v) /ɡoʊz/: Đi (chia số ít).<br>- <b>C. does</b>: Làm.<br>- <b>D. go</b>: Động từ nguyên thể.<br><b>👉 Tại sao B ĐÚNG:</b> Cụm từ cố định 'go fishing' (đi câu cá). Chủ ngữ số ít 'My grandfather' chia hiện tại đơn -> 'goes'. A, D sai chủ ngữ hòa hợp; C sai kết hợp từ." 
+            },
+            { 
+                id: 36, 
+                section: "EXERCISE 4: MULTIPLE CHOICE", 
+                question: "36. The film was so........... that we couldn’t watch till the end and fell asleep.", 
+                rawOptions: [
+                    {key:"A", text:"exciting", isCorrect:false}, 
+                    {key:"B", text:"boring", isCorrect:true}, 
+                    {key:"C", text:"wonderful", isCorrect:false}, 
+                    {key:"D", text:"easy", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Bộ phim ........... đến mức chúng tôi không thể xem đến cuối và đã ngủ gật.<br><b>Phân tích 4 đáp án:</b><br>- <b>A. exciting</b> (adj) /ɪkˈsaɪ.t̬ɪŋ/: thú vị.<br>- <b>B. boring</b> (adj) /ˈbɔː.rɪŋ/: tẻ nhạt, chán ngắt.<br>- <b>C. wonderful</b> (adj) /ˈwʌn.dɚ.fəl/: tuyệt vời.<br>- <b>D. easy</b> (adj) /ˈiː.zi/: dễ dàng.<br><b>👉 Tại sao B ĐÚNG:</b> Hậu quả 'không xem hết và ngủ gật' (fell asleep) chứng tỏ bộ phim rất chán (boring). A, C, D mang nghĩa tích cực, không gây ngủ gật." 
+            },
+            { 
+                id: 37, 
+                section: "EXERCISE 4: MULTIPLE CHOICE", 
+                question: "37. My brother and I...........our bicycles to school now.", 
+                rawOptions: [
+                    {key:"A", text:"ride", isCorrect:false}, 
+                    {key:"B", text:"am riding", isCorrect:false}, 
+                    {key:"C", text:"is riding", isCorrect:false}, 
+                    {key:"D", text:"are riding", isCorrect:true}
+                ], 
+                explanation: "<b>Dịch câu:</b> Anh trai tôi và tôi ........... xe đạp đến trường bây giờ.<br><b>Phân tích 4 đáp án:</b><br>- <b>A. ride</b>: Hiện tại đơn.<br>- <b>B. am riding</b>: Chia theo 'I' (thiếu anh trai).<br>- <b>C. is riding</b>: Chia theo số ít.<br>- <b>D. are riding</b> (v) /ɑːr ˈraɪ.dɪŋ/: Đang đi xe.<br><b>👉 Tại sao D ĐÚNG:</b> Dấu hiệu 'now' -> Hiện tại tiếp diễn. Chủ ngữ 'My brother and I' (2 người = chúng tôi -> số nhiều) đi với 'are riding'. A, B, C chia sai thì hoặc sai To Be." 
+            },
+            { 
+                id: 38, 
+                section: "EXERCISE 4: MULTIPLE CHOICE", 
+                question: "38. My children ........... Science at present.", 
+                rawOptions: [
+                    {key:"A", text:"are study", isCorrect:false}, 
+                    {key:"B", text:"is studying", isCorrect:false}, 
+                    {key:"C", text:"aren’t studying", isCorrect:true}, 
+                    {key:"D", text:"do not studying", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Các con của tôi ........... môn Khoa học hiện tại.<br><b>Phân tích 4 đáp án:</b><br>- <b>A. are study</b>: Sai cấu trúc (are không đi với V-inf).<br>- <b>B. is studying</b>: Sai chủ ngữ (My children là số nhiều, không đi với is).<br>- <b>C. aren’t studying</b> (v) /ɑːrnt ˈstʌd.i.ɪŋ/: Đang không học.<br>- <b>D. do not studying</b>: Sai ngữ pháp.<br><b>👉 Tại sao C ĐÚNG:</b> Dấu hiệu 'at present' -> Hiện tại tiếp diễn. Chủ ngữ số nhiều 'My children' đi với dạng phủ định 'aren't studying'. A, B, D sai cấu trúc cơ bản." 
+            },
+            { 
+                id: 39, 
+                section: "EXERCISE 4: MULTIPLE CHOICE", 
+                question: "39. The boy is sitting ........... the computer. He is playing computer games.", 
+                rawOptions: [
+                    {key:"A", text:"behind", isCorrect:false}, 
+                    {key:"B", text:"under", isCorrect:false}, 
+                    {key:"C", text:"on", isCorrect:false}, 
+                    {key:"D", text:"in front of", isCorrect:true}
+                ], 
+                explanation: "<b>Dịch câu:</b> Cậu bé đang ngồi ........... máy tính. Cậu ấy đang chơi game.<br><b>Phân tích 4 đáp án:</b><br>- <b>A. behind</b> (prep) /bɪˈhaɪnd/: phía sau.<br>- <b>B. under</b> (prep) /ˈʌn.dɚ/: ở dưới.<br>- <b>C. on</b> (prep) /ɑːn/: trên bề mặt.<br>- <b>D. in front of</b> (prep) /ɪn frʌnt əv/: phía trước.<br><b>👉 Tại sao D ĐÚNG:</b> Chơi game máy tính thì ngồi mặt hướng vào màn hình phía trước (in front of). A, B, C không đúng tư thế ngồi chơi máy tính thực tế." 
+            },
+            { 
+                id: 40, 
+                section: "EXERCISE 4: MULTIPLE CHOICE", 
+                question: "40. Mike ........... his mother cook dinner at 5 p.m. every day.", 
+                rawOptions: [
+                    {key:"A", text:"help usually", isCorrect:false}, 
+                    {key:"B", text:"usually helps", isCorrect:true}, 
+                    {key:"C", text:"usually help", isCorrect:false}, 
+                    {key:"D", text:"helps usually", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Mike ........... mẹ nấu ăn lúc 5 giờ chiều mỗi ngày.<br><b>Phân tích 4 đáp án:</b><br>- <b>A. help usually</b>: Sai vị trí trạng từ.<br>- <b>B. usually helps</b> / ˈjuː.ʒu.ə.li helps/: Thường xuyên giúp đỡ.<br>- <b>C. usually help</b>: Chưa chia động từ số ít.<br>- <b>D. helps usually</b>: Sai vị trí trạng từ.<br><b>👉 Tại sao B ĐÚNG:</b> Trạng từ chỉ tần suất (usually) đứng TRƯỚC động từ thường (helps). Chủ ngữ 'Mike' số ít chia động từ 'helps'. A, C, D sai vị trí trạng từ hoặc chưa chia động từ." 
+            },
+            { 
+                id: 41, 
+                section: "EXERCISE 4: MULTIPLE CHOICE", 
+                question: "41. My class ........... at 4.30 p.m every day.", 
+                rawOptions: [
+                    {key:"A", text:"go", isCorrect:false}, 
+                    {key:"B", text:"finishes", isCorrect:true}, 
+                    {key:"C", text:"have", isCorrect:false}, 
+                    {key:"D", text:"finish", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Lớp học của tôi ........... lúc 4:30 chiều mỗi ngày.<br><b>Phân tích 4 đáp án:</b><br>- <b>A. go</b>: Đi.<br>- <b>B. finishes</b> (v) /ˈfɪn.ɪ.ʃɪz/: Kết thúc / tan học.<br>- <b>C. have</b>: Có.<br>- <b>D. finish</b>: Động từ chưa chia số ít.<br><b>👉 Tại sao B ĐÚNG:</b> 'every day' -> Hiện tại đơn. Chủ ngữ số ít 'My class', động từ đuôi -sh thêm -es thành 'finishes' (phù hợp nghĩa tan học). A, C sai nghĩa; D chưa chia động từ." 
+            },
+            { 
+                id: 42, 
+                section: "EXERCISE 4: MULTIPLE CHOICE", 
+                question: "42. Please turn ........... the lights. The room is so dark.", 
+                rawOptions: [
+                    {key:"A", text:"with", isCorrect:false}, 
+                    {key:"B", text:"on", isCorrect:true}, 
+                    {key:"C", text:"at", isCorrect:false}, 
+                    {key:"D", text:"in", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Làm ơn hãy ........... đèn lên. Phòng tối quá.<br><b>Phân tích 4 đáp án:</b><br>- <b>A. with</b>: với.<br>- <b>B. on</b> (prep) /ɑːn/: Bật (khi đi với turn).<br>- <b>C. at</b>: tại.<br>- <b>D. in</b>: trong.<br><b>👉 Tại sao B ĐÚNG:</b> Ngữ cảnh phòng tối (so dark) nên cần bật đèn. Cụm động từ: 'turn on' = bật đèn/thiết bị. A, C, D không ghép tạo thành nghĩa bật đèn." 
+            },
+            { 
+                id: 43, 
+                section: "EXERCISE 4: MULTIPLE CHOICE", 
+                question: "43. There are two lights ........... the ceiling.", 
+                rawOptions: [
+                    {key:"A", text:"between", isCorrect:false}, 
+                    {key:"B", text:"on", isCorrect:true}, 
+                    {key:"C", text:"at", isCorrect:false}, 
+                    {key:"D", text:"in", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Có hai chiếc đèn ........... trần nhà.<br><b>Phân tích 4 đáp án:</b><br>- <b>A. between</b>: ở giữa.<br>- <b>B. on</b> (prep) /ɑːn/: Trên bề mặt.<br>- <b>C. at</b>: tại.<br>- <b>D. in</b>: trong.<br><b>👉 Tại sao B ĐÚNG:</b> Vị trí đèn gắn trên bề mặt trần nhà -> Dùng giới từ 'on' ('on the ceiling'). A, C, D không dùng cho vị trí tiếp xúc bề mặt trần nhà." 
+            },
+            { 
+                id: 44, 
+                section: "EXERCISE 4: MULTIPLE CHOICE", 
+                question: "44. Jane is healthy because she does ...........every day.", 
+                rawOptions: [
+                    {key:"A", text:"football", isCorrect:false}, 
+                    {key:"B", text:"badminton", isCorrect:false}, 
+                    {key:"C", text:"yoga", isCorrect:true}, 
+                    {key:"D", text:"tennis", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Jane khỏe mạnh vì cô ấy tập ........... mỗi ngày.<br><b>Phân tích 4 đáp án:</b><br>- <b>A. football</b>: bóng đá (Đi với play).<br>- <b>B. badminton</b>: cầu lông (Đi với play).<br>- <b>C. yoga</b> (n) /ˈjoʊ.ɡə/: môn yoga.<br>- <b>D. tennis</b>: quần vợt (Đi với play).<br><b>👉 Tại sao C ĐÚNG:</b> Động từ 'do' đi với môn tập cá nhân 'do yoga'. Các môn bóng/gậy A, B, D bắt buộc đi với động từ 'play'." 
+            },
+            { 
+                id: 45, 
+                section: "EXERCISE 4: MULTIPLE CHOICE", 
+                question: "45. “How about coming to the party tonight?” – “...........”", 
+                rawOptions: [
+                    {key:"A", text:"Not at all.", isCorrect:false}, 
+                    {key:"B", text:"That’s alright.", isCorrect:false}, 
+                    {key:"C", text:"Never mind.", isCorrect:false}, 
+                    {key:"D", text:"Thanks. I’d love to.", isCorrect:true}
+                ], 
+                explanation: "<b>Dịch câu:</b> “Tối nay đến dự tiệc nhé?” – “...........”<br><b>Phân tích 4 đáp án:</b><br>- <b>A. Not at all.</b>: Không có gì (Đáp lại lời cảm ơn).<br>- <b>B. That’s alright.</b>: Không sao đâu (Đáp lại lời xin lỗi).<br>- <b>C. Never mind.</b>: Đừng bận tâm.<br>- <b>D. Thanks. I’d love to.</b> (/θæŋks aɪd lʌv tuː/): Cảm ơn nhé. Tớ rất thích.<br><b>👉 Tại sao D ĐÚNG:</b> Lời đáp lại lịch sự và nhận lời rủ đi dự tiệc. A, B, C sai ngữ cảnh giao tiếp." 
+            },
+
+            // Exercise 5
+            { 
+                id: 46, 
+                section: "EXERCISE 5: WORD FILL IN BOX", 
+                question: "46. My father is a teacher. He ................... at a secondary school in my village.", 
+                rawOptions: [
+                    {key:"A", text:"teaches", isCorrect:true}, 
+                    {key:"B", text:"clever", isCorrect:false}, 
+                    {key:"C", text:"flat", isCorrect:false}, 
+                    {key:"D", text:"hall", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Bố tôi là giáo viên. Ông ................... tại một trường cấp 2 ở làng.<br><b>Phân tích đáp án:</b> Nghề nghiệp giáo viên (teacher) gắn liền với hành động dạy học (teaches - /tiːtʃɪz/). Các từ khác không chỉ hành động." 
+            },
+            { 
+                id: 47, 
+                section: "EXERCISE 5: WORD FILL IN BOX", 
+                question: "47. Misha is a ................... girl. She tops the class every year.", 
+                rawOptions: [
+                    {key:"A", text:"clever", isCorrect:true}, 
+                    {key:"B", text:"canteen", isCorrect:false}, 
+                    {key:"C", text:"funny", isCorrect:false}, 
+                    {key:"D", text:"cool", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Misha là một cô gái ................... Cô ấy luôn đứng đầu lớp mỗi năm.<br><b>Phân tích đáp án:</b> Kết quả đứng đầu lớp (tops the class) thể hiện sự thông minh, nhanh trí (clever - /ˈklev.ɚ/)." 
+            },
+            { 
+                id: 48, 
+                section: "EXERCISE 5: WORD FILL IN BOX", 
+                question: "48. John is a ................... boy. He always gives new ideas in different situations.", 
+                rawOptions: [
+                    {key:"A", text:"creative", isCorrect:true}, 
+                    {key:"B", text:"caring", isCorrect:false}, 
+                    {key:"C", text:"confident", isCorrect:false}, 
+                    {key:"D", text:"hard-working", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> John là một cậu bé ................... Cậu ấy luôn đưa ra ý tưởng mới trong các tình huống.<br><b>Phân tích đáp án:</b> Đưa ra ý tưởng mới (gives new ideas) thể hiện sự sáng tạo (creative - /kriˈeɪ.t̬ɪv/)." 
+            },
+            { 
+                id: 49, 
+                section: "EXERCISE 5: WORD FILL IN BOX", 
+                question: "49. I never eat lunch in the school ................... . I eat at home.", 
+                rawOptions: [
+                    {key:"A", text:"canteen", isCorrect:true}, 
+                    {key:"B", text:"sink", isCorrect:false}, 
+                    {key:"C", text:"rooms", isCorrect:false}, 
+                    {key:"D", text:"flat", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Tôi không bao giờ ăn trưa ở ................... trường. Tôi ăn ở nhà.<br><b>Phân tích đáp án:</b> Địa điểm ăn trưa ở trường học là căng-tin (school canteen - /kænˈtiːn/)." 
+            },
+            { 
+                id: 50, 
+                section: "EXERCISE 5: WORD FILL IN BOX", 
+                question: "50. Lan can make a speech in English in front of the class. She feels ................... when she speaks.", 
+                rawOptions: [
+                    {key:"A", text:"confident", isCorrect:true}, 
+                    {key:"B", text:"cool", isCorrect:false}, 
+                    {key:"C", text:"clever", isCorrect:false}, 
+                    {key:"D", text:"funny", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Lan có thể phát biểu trước lớp. Cô ấy cảm thấy ................... khi nói.<br><b>Phân tích đáp án:</b> Phát biểu trước đám đông không sợ hãi thể hiện sự tự tin (confident - /ˈkɑːn.fə.dənt/)." 
+            },
+            { 
+                id: 51, 
+                section: "EXERCISE 5: WORD FILL IN BOX", 
+                question: "51. We are buying two new ceiling fans and three standing lamps for our new ................... It’s on the third floor.", 
+                rawOptions: [
+                    {key:"A", text:"flat", isCorrect:true}, 
+                    {key:"B", text:"boarding", isCorrect:false}, 
+                    {key:"C", text:"hall", isCorrect:false}, 
+                    {key:"D", text:"cupboard", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Chúng tôi mua quạt và đèn cho ................... mới. Nó ở tầng 3.<br><b>Phân tích đáp án:</b> Căn hộ nằm trên tầng của một tòa nhà (third floor) gọi là căn hộ (flat - /flæt/)." 
+            },
+            { 
+                id: 52, 
+                section: "EXERCISE 5: WORD FILL IN BOX", 
+                question: "52. How many ................... are there in your house?", 
+                rawOptions: [
+                    {key:"A", text:"rooms", isCorrect:true}, 
+                    {key:"B", text:"boarding", isCorrect:false}, 
+                    {key:"C", text:"physics", isCorrect:false}, 
+                    {key:"D", text:"canteen", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Có bao nhiêu ................... trong nhà của bạn?<br><b>Phân tích đáp án:</b> Hỏi về số lượng không gian trong nhà dùng danh từ số nhiều 'rooms' (/ruːmz/)." 
+            },
+            { 
+                id: 53, 
+                section: "EXERCISE 5: WORD FILL IN BOX", 
+                question: "53. My favourite subject is ................... . I like doing experiment.", 
+                rawOptions: [
+                    {key:"A", text:"physics", isCorrect:true}, 
+                    {key:"B", text:"teaches", isCorrect:false}, 
+                    {key:"C", text:"hall", isCorrect:false}, 
+                    {key:"D", text:"sink", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Môn học yêu thích của tôi là ................... Tôi thích làm thí nghiệm.<br><b>Phân tích đáp án:</b> Môn học gắn liền với làm thí nghiệm (doing experiment) là môn Vật lý (physics - /ˈfɪz.ɪks/)." 
+            },
+            { 
+                id: 54, 
+                section: "EXERCISE 5: WORD FILL IN BOX", 
+                question: "54. There is a ................... school near my house but I don’t study there.", 
+                rawOptions: [
+                    {key:"A", text:"boarding", isCorrect:true}, 
+                    {key:"B", text:"country house", isCorrect:false}, 
+                    {key:"C", text:"caring", isCorrect:false}, 
+                    {key:"D", text:"cool", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Có một trường ................... gần nhà tôi nhưng tôi không học ở đó.<br><b>Phân tích đáp án:</b> Cụm từ chỉ trường học nội trú: 'boarding school' (/ˈbɔːr.dɪŋ/)." 
+            },
+            { 
+                id: 55, 
+                section: "EXERCISE 5: WORD FILL IN BOX", 
+                question: "55. She followed him down the ................... and down the stairs.", 
+                rawOptions: [
+                    {key:"A", text:"hall", isCorrect:true}, 
+                    {key:"B", text:"sink", isCorrect:false}, 
+                    {key:"C", text:"cupboard", isCorrect:false}, 
+                    {key:"D", text:"flat", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Cô ấy đi theo anh ấy xuống ................... và xuống cầu thang.<br><b>Phân tích đáp án:</b> Lối đi dẫn tới cầu thang gọi là hành lang (hall - /hɑːl/)." 
+            },
+            { 
+                id: 56, 
+                section: "EXERCISE 5: WORD FILL IN BOX", 
+                question: "56. I live in a ................... with my grandparents.", 
+                rawOptions: [
+                    {key:"A", text:"country house", isCorrect:true}, 
+                    {key:"B", text:"air conditioner", isCorrect:false}, 
+                    {key:"C", text:"canteen", isCorrect:false}, 
+                    {key:"D", text:"boarding", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Tôi sống trong một ................... cùng với ông bà.<br><b>Phân tích đáp án:</b> Loại hình nhà ở miền quê: 'country house' (/ˈkʌn.tri haʊs/)." 
+            },
+            { 
+                id: 57, 
+                section: "EXERCISE 5: WORD FILL IN BOX", 
+                question: "57. They are ................... nurses. They take care of the patients from dawn to dusk.", 
+                rawOptions: [
+                    {key:"A", text:"hard-working", isCorrect:true}, 
+                    {key:"B", text:"funny", isCorrect:false}, 
+                    {key:"C", text:"creative", isCorrect:false}, 
+                    {key:"D", text:"cool", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Họ là những y tá ................... Họ chăm sóc bệnh nhân từ sáng sớm tới tối.<br><b>Phân tích đáp án:</b> Làm việc chăm sóc từ sáng tới tối thể hiện sự chăm chỉ (hard-working - /ˌhɑːrdˈwɝː.kɪŋ/)." 
+            },
+            { 
+                id: 58, 
+                section: "EXERCISE 5: WORD FILL IN BOX", 
+                question: "58. I would like to have a glass of ................... lemonade each day.", 
+                rawOptions: [
+                    {key:"A", text:"cool", isCorrect:true}, 
+                    {key:"B", text:"clever", isCorrect:false}, 
+                    {key:"C", text:"funny", isCorrect:false}, 
+                    {key:"D", text:"hall", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Tôi muốn uống một ly nước chanh ................... mỗi ngày.<br><b>Phân tích đáp án:</b> Tính từ miêu tả thức uống giải khát tươi mát: mát lạnh (cool - /kuːl/)." 
+            },
+            { 
+                id: 59, 
+                section: "EXERCISE 5: WORD FILL IN BOX", 
+                question: "59. The ................... is in the bathroom.", 
+                rawOptions: [
+                    {key:"A", text:"sink", isCorrect:true}, 
+                    {key:"B", text:"cupboard", isCorrect:false}, 
+                    {key:"C", text:"canteen", isCorrect:false}, 
+                    {key:"D", text:"air conditioner", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> ................... ở trong phòng tắm.<br><b>Phân tích đáp án:</b> Thiết bị vệ sinh phục vụ rửa mặt/tay trong phòng tắm: bồn rửa (sink - /sɪŋk/)." 
+            },
+            { 
+                id: 60, 
+                section: "EXERCISE 5: WORD FILL IN BOX", 
+                question: "60. There is a big ................... in our kitchen.", 
+                rawOptions: [
+                    {key:"A", text:"cupboard", isCorrect:true}, 
+                    {key:"B", text:"hall", isCorrect:false}, 
+                    {key:"C", text:"boarding", isCorrect:false}, 
+                    {key:"D", text:"flat", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Có một chiếc ................... lớn trong nhà bếp.<br><b>Phân tích đáp án:</b> Đồ dùng cất giữ chén bát trong nhà bếp: tủ bếp (cupboard - /ˈkʌb.ɚd/)." 
+            },
+            { 
+                id: 61, 
+                section: "EXERCISE 5: WORD FILL IN BOX", 
+                question: "61. He was described as a ................... husband as he always cares about his wife.", 
+                rawOptions: [
+                    {key:"A", text:"caring", isCorrect:true}, 
+                    {key:"B", text:"clever", isCorrect:false}, 
+                    {key:"C", text:"cool", isCorrect:false}, 
+                    {key:"D", text:"funny", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Anh ấy được mô tả là người chồng ................... vì luôn quan tâm đến vợ.<br><b>Phân tích đáp án:</b> Luôn quan tâm tới người khác (cares about) là người chu đáo (caring - /ˈker.ɪŋ/)." 
+            },
+            { 
+                id: 62, 
+                section: "EXERCISE 5: WORD FILL IN BOX", 
+                question: "62. It's a really ................... film, everyone laughs a lot.", 
+                rawOptions: [
+                    {key:"A", text:"funny", isCorrect:true}, 
+                    {key:"B", text:"hard-working", isCorrect:false}, 
+                    {key:"C", text:"creative", isCorrect:false}, 
+                    {key:"D", text:"clever", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Bô phim rất ................... mọi người đều cười rất nhiều.<br><b>Phân tích đáp án:</b> Bộ phim khiến mọi người cười nhiều (laughs a lot) là phim hài hước (funny - /ˈfʌn.i/)." 
+            },
+            { 
+                id: 63, 
+                section: "EXERCISE 5: WORD FILL IN BOX", 
+                question: "63. I feel hot. Can you turn on the ...................?", 
+                rawOptions: [
+                    {key:"A", text:"air conditioner", isCorrect:true}, 
+                    {key:"B", text:"sink", isCorrect:false}, 
+                    {key:"C", text:"hall", isCorrect:false}, 
+                    {key:"D", text:"cupboard", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Tôi cảm thấy nóng. Bạn có thể bật ................... lên không?<br><b>Phân tích đáp án:</b> Bật thiết bị làm mát khi nóng: máy điều hòa (air conditioner - /ˈer kənˌdɪʃ.ən.ɚ/)." 
+            },
+
+            // Exercise 6
+            { 
+                id: 64, 
+                section: "EXERCISE 6: VERB TENSES", 
+                question: "64. Someone (knock) ...................at the door. Can you answer it?", 
+                rawOptions: [
+                    {key:"A", text:"knocks", isCorrect:false}, 
+                    {key:"B", text:"is knocking", isCorrect:true}, 
+                    {key:"C", text:"knocked", isCorrect:false}, 
+                    {key:"D", text:"are knocking", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Ai đó đang gõ cửa. Bạn ra mở cửa được không?<br><b>Phân tích:</b> Ngữ cảnh 'Can you answer it?' (Ra mở cửa giúp được không) cho thấy ai đó đang gõ cửa ngay lúc nói -> Chia Hiện tại tiếp diễn. 'Someone' chia số ít -> 'is knocking' (/ɪz ˈnɑː.kɪŋ/)." 
+            },
+            { 
+                id: 65, 
+                section: "EXERCISE 6: VERB TENSES", 
+                question: "65. A: What................... you (do) ...................now? - B: I (skip) ...................with my friends in the schoolyard.", 
+                rawOptions: [
+                    {key:"A", text:"are / doing / am skipping", isCorrect:true}, 
+                    {key:"B", text:"do / do / skip", isCorrect:false}, 
+                    {key:"C", text:"is / doing / is skipping", isCorrect:false}, 
+                    {key:"D", text:"are / do / skipping", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> A: Bây giờ bạn đang làm gì? - B: Tớ đang nhảy dây với bạn ở sân trường.<br><b>Phân tích:</b> Dấu hiệu 'now' -> Hiện tại tiếp diễn: 'are you doing' và 'am skipping' (nhớ gấp đôi chữ p)." 
+            },
+            { 
+                id: 66, 
+                section: "EXERCISE 6: VERB TENSES", 
+                question: "66. My brother (go) ................... to school at 7 o’clock every morning.", 
+                rawOptions: [
+                    {key:"A", text:"goes", isCorrect:true}, 
+                    {key:"B", text:"go", isCorrect:false}, 
+                    {key:"C", text:"is going", isCorrect:false}, 
+                    {key:"D", text:"went", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Anh trai tôi đi học lúc 7 giờ mỗi buổi sáng.<br><b>Phân tích:</b> Thói quen lặp lại 'every morning' -> Hiện tại đơn. Chủ ngữ số ít 'My brother' đi với 'goes' (/ɡoʊz/)." 
+            },
+            { 
+                id: 67, 
+                section: "EXERCISE 6: VERB TENSES", 
+                question: "67. ................... your cousin (do) ................... paintings in her free time?", 
+                rawOptions: [
+                    {key:"A", text:"Does / do", isCorrect:true}, 
+                    {key:"B", text:"Do / do", isCorrect:false}, 
+                    {key:"C", text:"Is / doing", isCorrect:false}, 
+                    {key:"D", text:"Does / does", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Em họ của bạn có vẽ tranh vào thời gian rảnh không?<br><b>Phân tích:</b> Thói quen lúc rảnh 'in her free time' chia Hiện tại đơn. Chủ ngữ số ít 'your cousin' -> Mượn 'Does ... do'." 
+            },
+            { 
+                id: 68, 
+                section: "EXERCISE 6: VERB TENSES", 
+                question: "68. We can go out now. It (not rain) ...................very hard.", 
+                rawOptions: [
+                    {key:"A", text:"is not raining", isCorrect:true}, 
+                    {key:"B", text:"doesn't rain", isCorrect:false}, 
+                    {key:"C", text:"don't rain", isCorrect:false}, 
+                    {key:"D", text:"not raining", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Chúng ta có thể ra ngoài bây giờ. Trời đang không mưa to.<br><b>Phân tích:</b> Ngữ cảnh 'go out now' -> Hiện tại tiếp diễn phủ định ngay lúc nói: 'is not raining' (/ɪznt ˈreɪ.nɪŋ/)." 
+            },
+            { 
+                id: 69, 
+                section: "EXERCISE 6: VERB TENSES", 
+                question: "69. My sister (not have) ................... English lesson on Monday.", 
+                rawOptions: [
+                    {key:"A", text:"does not have", isCorrect:true}, 
+                    {key:"B", text:"do not have", isCorrect:false}, 
+                    {key:"C", text:"is not having", isCorrect:false}, 
+                    {key:"D", text:"has not", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Chị gái tôi không có tiết học Tiếng Anh vào thứ Hai.<br><b>Phân tích:</b> Lịch học cố định chia Hiện tại đơn phủ định với chủ ngữ số ít 'My sister': 'does not have' (/ˈdʌz.ənt hæv/)." 
+            },
+            { 
+                id: 70, 
+                section: "EXERCISE 6: VERB TENSES", 
+                question: "70. ................... your mother (cook) ................... in the kitchen at the moment?", 
+                rawOptions: [
+                    {key:"A", text:"Is / cooking", isCorrect:true}, 
+                    {key:"B", text:"Does / cook", isCorrect:false}, 
+                    {key:"C", text:"Do / cook", isCorrect:false}, 
+                    {key:"D", text:"Are / cooking", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Mẹ của bạn có đang nấu ăn trong bếp ngay lúc này không?<br><b>Phân tích:</b> 'at the moment' -> Hiện tại tiếp diễn nghi vấn. Chủ ngữ số ít 'your mother' đi với 'Is ... cooking'." 
+            },
+
+            // Exercise 7
+            { 
+                id: 71, 
+                section: "EXERCISE 7: WORD FORMATION", 
+                question: "71. We had a lot of ................... at Sandra’s party. (funny)", 
+                rawOptions: [
+                    {key:"A", text:"fun", isCorrect:true}, 
+                    {key:"B", text:"funny", isCorrect:false}, 
+                    {key:"C", text:"funniest", isCorrect:false}, 
+                    {key:"D", text:"funnier", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Chúng tôi đã có rất nhiều niềm vui ở bữa tiệc của Sandra.<br><b>Phân tích:</b> Sau cụm chỉ số lượng 'a lot of' cần một danh từ. Danh từ của tính từ funny là 'fun' (/fʌn/)." 
+            },
+            { 
+                id: 72, 
+                section: "EXERCISE 7: WORD FORMATION", 
+                question: "72. Kids are not allowed to use ................... in Maths classes. (calculate)", 
+                rawOptions: [
+                    {key:"A", text:"calculators", isCorrect:true}, 
+                    {key:"B", text:"calculator", isCorrect:false}, 
+                    {key:"C", text:"calculation", isCorrect:false}, 
+                    {key:"D", text:"calculating", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Trẻ em không được dùng máy tính bỏ túi trong giờ Toán.<br><b>Phân tích:</b> Cần danh từ chỉ dụng cụ học tập số nhiều chỉ chung -> 'calculators' (/ˈkæl.kjə.leɪ.t̬ɚz/)." 
+            },
+            { 
+                id: 73, 
+                section: "EXERCISE 7: WORD FORMATION", 
+                question: "73. Hoa studies very hard for the exam, so she feels so .................... (confidence)", 
+                rawOptions: [
+                    {key:"A", text:"confident", isCorrect:true}, 
+                    {key:"B", text:"confidently", isCorrect:false}, 
+                    {key:"C", text:"confidence", isCorrect:false}, 
+                    {key:"D", text:"confide", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Hoa học rất chăm chỉ nên cô ấy cảm thấy rất tự tin.<br><b>Phân tích:</b> Sau động từ cảm giác 'feels' cần một tính từ. Tính từ chuyển từ confidence -> 'confident' (/ˈkɑːn.fə.dənt/)." 
+            },
+            { 
+                id: 74, 
+                section: "EXERCISE 7: WORD FORMATION", 
+                question: "74. Children look very ............. while playing games during break time. (excite)", 
+                rawOptions: [
+                    {key:"A", text:"excited", isCorrect:true}, 
+                    {key:"B", text:"exciting", isCorrect:false}, 
+                    {key:"C", text:"excitement", isCorrect:false}, 
+                    {key:"D", text:"excite", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Trẻ em trông rất hào hứng khi chơi game giờ giải lao.<br><b>Phân tích:</b> Cấu trúc 'look + adj'. Miêu tả cảm xúc con người (Children) dùng tính từ đuôi -ed -> 'excited' (/ɪkˈsaɪ.t̬ɪd/)." 
+            },
+            { 
+                id: 75, 
+                section: "EXERCISE 7: WORD FORMATION", 
+                question: "75. He’s ................... and plays basketball very well. (sport)", 
+                rawOptions: [
+                    {key:"A", text:"sporty", isCorrect:true}, 
+                    {key:"B", text:"sporting", isCorrect:false}, 
+                    {key:"C", text:"sports", isCorrect:false}, 
+                    {key:"D", text:"sported", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Cậu ấy rất hăng hái thể thao và chơi bóng rổ rất giỏi.<br><b>Phân tích:</b> Sau 'He's' cần tính từ miêu tả phong cách thể thao con người -> 'sporty' (/ˈspɔːr.t̬i/)." 
+            },
+            { 
+                id: 76, 
+                section: "EXERCISE 7: WORD FORMATION", 
+                question: "76. Please be...................with those vases. Don’t break them. (care)", 
+                rawOptions: [
+                    {key:"A", text:"careful", isCorrect:true}, 
+                    {key:"B", text:"careless", isCorrect:false}, 
+                    {key:"C", text:"carefully", isCorrect:false}, 
+                    {key:"D", text:"care", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Hãy cẩn thận với những chiếc bình đó. Đừng làm vỡ chúng.<br><b>Phân tích:</b> Câu mệnh lệnh 'Be + careful + with...' (Hãy cẩn thận với cái gì) -> 'careful' (/ˈker.fəl/)." 
+            },
+            { 
+                id: 77, 
+                section: "EXERCISE 7: WORD FORMATION", 
+                question: "77. Phong studies in an ................... school with English-speaking friends. (nation)", 
+                rawOptions: [
+                    {key:"A", text:"international", isCorrect:true}, 
+                    {key:"B", text:"national", isCorrect:false}, 
+                    {key:"C", text:"nationally", isCorrect:false}, 
+                    {key:"D", text:"nationality", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Phong học ở một trường quốc tế với những người bạn nói tiếng Anh.<br><b>Phân tích:</b> Bổ nghĩa cho 'school' đi kèm bạn học tiếng Anh là tính từ trường quốc tế -> 'international' (/ˌɪn.t̬ɚˈnæʃ.ən.əl/)." 
+            },
+            { 
+                id: 78, 
+                section: "EXERCISE 7: WORD FORMATION", 
+                question: "78. Mai has a lot of new ideas for the school project. She’s very ................ (create)", 
+                rawOptions: [
+                    {key:"A", text:"creative", isCorrect:true}, 
+                    {key:"B", text:"creation", isCorrect:false}, 
+                    {key:"C", text:"creatively", isCorrect:false}, 
+                    {key:"D", text:"creator", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Mai có nhiều ý tưởng mới. Cô ấy rất sáng tạo.<br><b>Phân tích:</b> Sau 'very' cần tính từ miêu tả tính cách -> 'creative' (/kriˈeɪ.t̬ɪv/)." 
+            },
+            { 
+                id: 79, 
+                section: "EXERCISE 7: WORD FORMATION", 
+                question: "79. Is there any ...................in your new living room? (furnish)", 
+                rawOptions: [
+                    {key:"A", text:"furniture", isCorrect:true}, 
+                    {key:"B", text:"furnitures", isCorrect:false}, 
+                    {key:"C", text:"furnished", isCorrect:false}, 
+                    {key:"D", text:"furnishing", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Có đồ nội thất nào trong phòng khách mới của bạn không?<br><b>Phân tích:</b> Danh từ không đếm được chỉ đồ đạc nội thất -> 'furniture' (/ˈfɝː.nɪ.tʃɚ/)." 
+            },
+            { 
+                id: 80, 
+                section: "EXERCISE 7: WORD FORMATION", 
+                question: "80. It’s not easy for Anne to make new friends because she’s ............ (friend)", 
+                rawOptions: [
+                    {key:"A", text:"unfriendly", isCorrect:true}, 
+                    {key:"B", text:"friendly", isCorrect:false}, 
+                    {key:"C", text:"friendship", isCorrect:false}, 
+                    {key:"D", text:"friendless", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Anne không dễ kết bạn mới vì cô ấy khá khó gần.<br><b>Phân tích:</b> 'not easy to make friends' do tính cách không thân thiện/khó gần -> tính từ 'unfriendly' (/ʌnˈfrend.li/)." 
+            },
+
+            // Exercise 8
+            { 
+                id: 81, 
+                section: "EXERCISE 8: PREPOSITIONS", 
+                question: "81. The party will start ............. seven o'clock............. the evening.", 
+                rawOptions: [
+                    {key:"A", text:"at / in", isCorrect:true}, 
+                    {key:"B", text:"in / at", isCorrect:false}, 
+                    {key:"C", text:"on / in", isCorrect:false}, 
+                    {key:"D", text:"at / on", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Bữa tiệc sẽ bắt đầu lúc 7 giờ vào buổi tối.<br><b>Phân tích:</b> Quy tắc giới từ chỉ thời gian: 'at' + giờ cố định; 'in' + buổi trong ngày -> 'at / in'." 
+            },
+            { 
+                id: 82, 
+                section: "EXERCISE 8: PREPOSITIONS", 
+                question: "82. My birthday is ............. September 3rd.", 
+                rawOptions: [
+                    {key:"A", text:"on", isCorrect:true}, 
+                    {key:"B", text:"in", isCorrect:false}, 
+                    {key:"C", text:"at", isCorrect:false}, 
+                    {key:"D", text:"by", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Sinh nhật của tôi vào ngày 3 tháng 9.<br><b>Phân tích:</b> Giới từ 'on' đứng trước ngày tháng cụ thể trong năm." 
+            },
+            { 
+                id: 83, 
+                section: "EXERCISE 8: PREPOSITIONS", 
+                question: "83. It's often rainy ............. July.", 
+                rawOptions: [
+                    {key:"A", text:"in", isCorrect:true}, 
+                    {key:"B", text:"on", isCorrect:false}, 
+                    {key:"C", text:"at", isCorrect:false}, 
+                    {key:"D", text:"to", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Trời thường mưa vào tháng Bảy.<br><b>Phân tích:</b> Giới từ 'in' đứng trước các tháng trong năm." 
+            },
+            { 
+                id: 84, 
+                section: "EXERCISE 8: PREPOSITIONS", 
+                question: "84. The meeting will last............. 7 a.m............. 5 p.m.", 
+                rawOptions: [
+                    {key:"A", text:"from / to", isCorrect:true}, 
+                    {key:"B", text:"between / and", isCorrect:false}, 
+                    {key:"C", text:"at / at", isCorrect:false}, 
+                    {key:"D", text:"in / to", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Cuộc họp sẽ kéo dài từ 7 giờ sáng đến 5 giờ chiều.<br><b>Phân tích:</b> Cấu trúc khoảng thời gian từ mấy giờ tới mấy giờ: 'from ... to ...'." 
+            },
+            { 
+                id: 85, 
+                section: "EXERCISE 8: PREPOSITIONS", 
+                question: "85. There are some books ............. the bookshelf ............. the living room.", 
+                rawOptions: [
+                    {key:"A", text:"on / in", isCorrect:true}, 
+                    {key:"B", text:"in / on", isCorrect:false}, 
+                    {key:"C", text:"at / in", isCorrect:false}, 
+                    {key:"D", text:"under / at", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Có một số cuốn sách trên giá sách trong phòng khách.<br><b>Phân tích:</b> Vị trí tiếp xúc bề mặt dùng 'on' (on the bookshelf); trong không gian phòng dùng 'in' (in the living room)." 
+            },
+
+            // Exercise 9
+            { 
+                id: 86, 
+                section: "EXERCISE 9: CLOZE TEST - PREPOSITIONS", 
+                question: "86. You can’t see our house (86) ........... here...", 
+                rawOptions: [
+                    {key:"A", text:"on", isCorrect:false}, 
+                    {key:"B", text:"from", isCorrect:true}, 
+                    {key:"C", text:"in", isCorrect:false}, 
+                    {key:"D", text:"behind", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Bạn không thể nhìn thấy nhà tôi từ vị trí này...<br><b>Phân tích:</b> Cụm từ hướng nhìn 'from here' (từ đây)." 
+            },
+            { 
+                id: 87, 
+                section: "EXERCISE 9: CLOZE TEST - PREPOSITIONS", 
+                question: "87. ...because it is (87) ........... the church.", 
+                rawOptions: [
+                    {key:"A", text:"on", isCorrect:false}, 
+                    {key:"B", text:"behind", isCorrect:true}, 
+                    {key:"C", text:"in", isCorrect:false}, 
+                    {key:"D", text:"between", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> ...bởi vì nó ở phía sau nhà thờ.<br><b>Phân tích:</b> Lý do không thấy nhà vì nó nằm ở ẩn đằng sau nhà thờ (behind the church)." 
+            },
+            { 
+                id: 88, 
+                section: "EXERCISE 9: CLOZE TEST - PREPOSITIONS", 
+                question: "88. ...it is (88) ........... the left...", 
+                rawOptions: [
+                    {key:"A", text:"at", isCorrect:false}, 
+                    {key:"B", text:"in", isCorrect:false}, 
+                    {key:"C", text:"on", isCorrect:true}, 
+                    {key:"D", text:"under", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> ...nó ở phía bên trái...<br><b>Phân tích:</b> Cụm từ vị trí cố định 'on the left' (ở bên trái)." 
+            },
+            { 
+                id: 89, 
+                section: "EXERCISE 9: CLOZE TEST - PREPOSITIONS", 
+                question: "89. ...next (89) ........... the Black Cat Cafe.", 
+                rawOptions: [
+                    {key:"A", text:"in", isCorrect:false}, 
+                    {key:"B", text:"at", isCorrect:false}, 
+                    {key:"C", text:"on", isCorrect:false}, 
+                    {key:"D", text:"to", isCorrect:true}
+                ], 
+                explanation: "<b>Dịch câu:</b> ...ngay bên cạnh quán cà phê Mèo Đen.<br><b>Phân tích:</b> Cụm từ cố định 'next to' (bên cạnh)." 
+            },
+            { 
+                id: 90, 
+                section: "EXERCISE 9: CLOZE TEST - PREPOSITIONS", 
+                question: "90. My room is upstairs (90) ........... the right.", 
+                rawOptions: [
+                    {key:"A", text:"behind", isCorrect:false}, 
+                    {key:"B", text:"in", isCorrect:false}, 
+                    {key:"C", text:"next", isCorrect:false}, 
+                    {key:"D", text:"on", isCorrect:true}
+                ], 
+                explanation: "<b>Dịch câu:</b> Phòng tôi ở trên tầng, nằm ở phía bên phải.<br><b>Phân tích:</b> Cụm từ cố định 'on the right' (ở bên phải)." 
+            },
+            { 
+                id: 91, 
+                section: "EXERCISE 9: CLOZE TEST - PREPOSITIONS", 
+                question: "91. I have a desk (91) ...........front...", 
+                rawOptions: [
+                    {key:"A", text:"next", isCorrect:false}, 
+                    {key:"B", text:"on", isCorrect:false}, 
+                    {key:"C", text:"at", isCorrect:false}, 
+                    {key:"D", text:"in", isCorrect:true}
+                ], 
+                explanation: "<b>Dịch câu:</b> Tôi có một chiếc bàn ở phía trước...<br><b>Phân tích:</b> Bắt đầu cụm từ chỉ vị trí phía trước 'in front of'." 
+            },
+            { 
+                id: 92, 
+                section: "EXERCISE 9: CLOZE TEST - PREPOSITIONS", 
+                question: "92. ...in front (92) ........... the window.", 
+                rawOptions: [
+                    {key:"A", text:"about", isCorrect:false}, 
+                    {key:"B", text:"with", isCorrect:false}, 
+                    {key:"C", text:"on", isCorrect:false}, 
+                    {key:"D", text:"of", isCorrect:true}
+                ], 
+                explanation: "<b>Dịch câu:</b> ...ở phía trước cửa sổ.<br><b>Phân tích:</b> Hoàn thiện cụm giới từ 'in front of'." 
+            },
+            { 
+                id: 93, 
+                section: "EXERCISE 9: CLOZE TEST - PREPOSITIONS", 
+                question: "93. ...because our house is (93) ........... the park.", 
+                rawOptions: [
+                    {key:"A", text:"next", isCorrect:false}, 
+                    {key:"B", text:"on", isCorrect:false}, 
+                    {key:"C", text:"from", isCorrect:false}, 
+                    {key:"D", text:"near", isCorrect:true}
+                ], 
+                explanation: "<b>Dịch câu:</b> ...vì nhà chúng tôi gần công viên.<br><b>Phân tích:</b> 'near the park' (gần công viên). 'next' phải có 'to' đi kèm mới đúng." 
+            },
+            { 
+                id: 94, 
+                section: "EXERCISE 9: CLOZE TEST - PREPOSITIONS", 
+                question: "94. My desk is (94) ...........the bed (95) ...........the wardrobe.", 
+                rawOptions: [
+                    {key:"A", text:"in", isCorrect:false}, 
+                    {key:"B", text:"between", isCorrect:true}, 
+                    {key:"C", text:"at", isCorrect:false}, 
+                    {key:"D", text:"on", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> Bàn học của tôi nằm ở giữa chiếc giường...<br><b>Phân tích:</b> Cấu trúc ở giữa hai vật 'between A and B'." 
+            },
+            { 
+                id: 95, 
+                section: "EXERCISE 9: CLOZE TEST - PREPOSITIONS", 
+                question: "95. ...between the bed (95) ...........the wardrobe.", 
+                rawOptions: [
+                    {key:"A", text:"and", isCorrect:true}, 
+                    {key:"B", text:"on", isCorrect:false}, 
+                    {key:"C", text:"in", isCorrect:false}, 
+                    {key:"D", text:"behind", isCorrect:false}
+                ], 
+                explanation: "<b>Dịch câu:</b> ...ở giữa chiếc giường và tủ quần áo.<br><b>Phân tích:</b> Hoàn thiện cấu trúc 'between ... and ...'." 
+            }
+        ];
+
+        function shuffleArray(array) {
+            let cur = array.slice();
+            for (let i = cur.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [cur[i], cur[j]] = [cur[j], cur[i]];
+            }
+            return cur;
+        }
+
+        function renderQuiz() {
+            const quizBody = document.getElementById('quiz-body');
+            let html = '';
+            let currentSection = '';
+
+            questionsData.forEach((q, idx) => {
+                if (q.section !== currentSection) {
+                    currentSection = q.section;
+                    html += `<div class="section-card"><div class="section-header">📌 ${currentSection}</div>`;
+                }
+
+                const shuffledOpts = shuffleArray(q.rawOptions);
+
+                html += `
+                    <div class="question-card" id="q-card-${q.id}">
+                        <div class="question-num">Câu ${idx + 1}:</div>
+                        <div class="question-text">${q.question}</div>
+                        <div class="options-grid" id="opt-container-${q.id}">
+                `;
+
+                shuffledOpts.forEach(opt => {
+                    html += `
+                        <button class="opt-btn" 
+                                onclick="checkAnswer(${q.id}, ${opt.isCorrect}, this)" 
+                                data-correct="${opt.isCorrect}">
+                            ${opt.text}
+                        </button>
+                    `;
+                });
+
+                html += `
+                        </div>
+                        <div class="explanation-box" id="exp-${q.id}">
+                            <div class="exp-header">💡 GIẢI THÍCH CHI TIẾT TỪ MS LÊ HẰNG:</div>
+                            <div class="exp-content">${q.explanation}</div>
+                        </div>
+                    </div>
+                `;
+
+                if (idx === questionsData.length - 1 || questionsData[idx+1].section !== currentSection) {
+                    html += `</div>`;
+                }
+            });
+
+            quizBody.innerHTML = html;
+        }
+
+        let userScores = {};
+
+        function checkAnswer(qId, isCorrect, btnElement) {
+            const container = document.getElementById(`opt-container-${qId}`);
+            const buttons = container.querySelectorAll('.opt-btn');
+
+            buttons.forEach(btn => btn.setAttribute('disabled', 'true'));
+
+            if (isCorrect) {
+                btnElement.classList.add('correct');
+                playDing();
+                confetti({ particleCount: 35, spread: 60, origin: { y: 0.7 } });
+                userScores[qId] = true;
+            } else {
+                btnElement.classList.add('wrong');
+                playWrongSound();
+                userScores[qId] = false;
+
+                buttons.forEach(btn => {
+                    if (btn.getAttribute('data-correct') === 'true') {
+                        btn.classList.add('correct');
+                    }
+                });
+            }
+
+            const expBox = document.getElementById(`exp-${qId}`);
+            expBox.style.display = 'block';
+        }
+
+        function calculateResult() {
+            const total = questionsData.length;
+            let correctCount = 0;
+
+            for (let qId in userScores) {
+                if (userScores[qId] === true) correctCount++;
+            }
+
+            const percentage = (correctCount / total) * 100;
+            const scoreText = `${correctCount} / ${total}`;
+            let msg = '';
+
+            if (percentage < 50) {
+                msg = "Điểm lần này chưa cao lắm, con cố gắng đọc kỹ giải thích đáp án và làm lại nha. Cô tin con sẽ làm tốt hơn ở lần sau! 💖";
+            } else if (percentage <= 80) {
+                msg = "Con đã có tiến bộ khá ổn rồi, con cố gắng đọc kỹ giải thích đáp án và làm lại nha. Cô tin con sẽ làm tốt hơn ở lần sau! 🌟";
+            } else {
+                msg = "Làm tốt lắm, con cố gắng rinh điểm 10 ở lần sau nha! 🎉🏆";
+            }
+
+            document.getElementById('modalScoreText').innerText = scoreText;
+            document.getElementById('modalMsgText').innerText = msg;
+            document.getElementById('resultModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('resultModal').style.display = 'none';
+        }
+
+        window.onload = renderQuiz;
+    </script>
+</body>
+</html>
